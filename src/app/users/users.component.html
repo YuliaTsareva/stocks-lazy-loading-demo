@@ -1,0 +1,14 @@
+Users component
+
+<ul>
+  <li *ngFor="let user of (users | active)">
+    {{user.name}}
+  </li>
+</ul>
+
+
+    <div *ngFor="let user of users | active">
+      {{user.name}}
+    </div>
+
+
