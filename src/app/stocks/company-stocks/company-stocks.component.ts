@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StocksService } from '../stocks.service';
+import { StockQuote } from '../stock-quote';
+import 'd3';
 
 @Component({
     selector: 'company-stocks',
@@ -8,7 +10,7 @@ import { StocksService } from '../stocks.service';
     styleUrls: ['./company-stocks.component.css']
 })
 export class CompanyStocksComponent implements OnInit {
-    company;
+    company: StockQuote; // todo: it is not a company
 
     constructor(private route: ActivatedRoute,
                 private stocksService: StocksService) {
@@ -16,5 +18,19 @@ export class CompanyStocksComponent implements OnInit {
 
     ngOnInit() {
         this.company = this.route.snapshot.data['company'];
+
+        const chartParams = {
+            StartDate: '2016-01-01T00:00:00-00',
+            EndDate: '2016-10-01T00:00:00-00',
+            DataPeriod: 'Month',
+            Elements: [
+                {Symbol: this.company.Symbol, Type: 'price', Params: ['c']}
+            ]
+        };
+
+        this.stocksService.getChartData(chartParams)
+            .subscribe(chart => {
+                console.log(chart);
+            });
     }
 }
