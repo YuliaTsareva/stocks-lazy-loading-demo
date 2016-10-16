@@ -1,27 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home.component';
-import { StockComponent } from './stock/stock.component';
+import { CurrenciesComponent } from './currencies.component';
 
 export const routerConfig = [{
   path: '',
-  component: HomeComponent
+  component: CurrenciesComponent
 }];
-
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    StockComponent
+      CurrenciesComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routerConfig)
   ],
-  providers: [],
-  exports: [HomeComponent]
+  exports: [CurrenciesComponent]
 })
-export default class HomeModule {
+export default class CurrenciesModule {
 }

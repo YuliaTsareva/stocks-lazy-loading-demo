@@ -1,0 +1,18 @@
+<h2>Stocks</h2>
+
+<table>
+    <tr *ngFor="let company of companies">
+        <td class="name">
+            <a [routerLink]="['/stocks/company', company.symbol]">{{ company.name }}</a>
+        </td>
+
+        <td class="rate">
+            {{ company.stocksQuote?.LastPrice  | number:'.2' }}$
+        </td>
+
+        <td [ngClass]="{'up': company.stocksQuote?.ChangePercent > 0,
+                  'down': company.stocksQuote?.ChangePercent < 0}">
+            {{ company.stocksQuote?.ChangePercent | number:'.2-2' }}%
+        </td>
+    </tr>
+</table>

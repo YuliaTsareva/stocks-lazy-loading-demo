@@ -1,0 +1,27 @@
+<h2>{{company.Name}} ({{company.Symbol}})</h2>
+
+<h3>{{company.LastPrice | number:'.2'}}
+    {{company.Change | number:'.2'}}
+    ({{company.ChangePercent | number:'.2-2'}})</h3>
+
+<table>
+    <tr>
+        <td class="param">Open</td>
+        <td>{{company.Open | number:'.2'}}</td>
+    </tr>
+
+    <tr>
+        <td class="param">Day's Range</td>
+        <td>{{company.Low | number:'.2'}} &mdash; {{company.High | number:'.2'}}</td>
+    </tr>
+
+    <tr>
+        <td class="param">Market Cap</td>
+        <td>{{company.MarketCap | number}}</td>
+    </tr>
+
+    <tr>
+        <td class="param">Volume</td>
+        <td>{{company.Volume | number}}</td>
+    </tr>
+</table>
