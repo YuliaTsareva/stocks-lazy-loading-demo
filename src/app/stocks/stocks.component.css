@@ -1,0 +1,11 @@
+.name, .rate {
+    padding-right: 10px;
+}
+
+.up {
+    color: green;
+}
+
+.down {
+    color: red;
+}
