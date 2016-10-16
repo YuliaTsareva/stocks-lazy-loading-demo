@@ -1,3 +1,12 @@
 nav a {
     margin-right: 7px;
 }
+
+a:hover {
+    border-bottom: 1px dashed;
+    text-decoration: none;
+}
+
+.active {
+    border-bottom: 1px dashed;
+}
