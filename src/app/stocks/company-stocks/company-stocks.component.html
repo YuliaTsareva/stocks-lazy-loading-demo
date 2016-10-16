@@ -1,8 +1,14 @@
 <h2>{{company.Name}} ({{company.Symbol}})</h2>
 
-<h3>{{company.LastPrice | number:'.2'}}
-    {{company.Change | number:'.2'}}
-    ({{company.ChangePercent | number:'.2-2'}})</h3>
+<h3>
+    <span class="price">
+        {{company.LastPrice | number:'.2'}}</span>
+
+    <span [ngClass]="{'up': company.Change > 0,
+                      'down': company.Change < 0}">
+        {{company.Change | number:'.2'}}
+        ({{company.ChangePercent | number:'.2-2'}}%)</span>
+</h3>
 
 <table>
     <tr>

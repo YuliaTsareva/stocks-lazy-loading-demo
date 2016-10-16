@@ -1,3 +1,26 @@
+h2 {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.up {
+    color: #43A047;
+}
+
+.down {
+    color: #F4511E;
+}
+
 table {
     font-size: 15px;
 }
