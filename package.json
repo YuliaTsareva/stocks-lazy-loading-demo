@@ -29,6 +29,7 @@
     "zone.js": "0.6.26"
   },
   "devDependencies": {
+    "@types/d3": "4.3.0",
     "@types/jasmine": "2.5.37",
     "@types/node": "6.0.46",
     "angular-cli": "1.0.0-beta.19-3",

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StocksService } from '../stocks.service';
 import { StockQuote } from '../stock-quote';
-import 'd3';
 
 @Component({
     selector: 'company-stocks',

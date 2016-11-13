@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CompanyStocksComponent } from './company-stocks.component';
+import { StocksChartComponent } from './stocks-chart/stocks-chart.component';
 import { StockQuoteResolve } from './stock-quote-resolve';
 
 export const routerConfig = [{
@@ -14,7 +15,8 @@ export const routerConfig = [{
 
 @NgModule({
     declarations: [
-        CompanyStocksComponent
+        CompanyStocksComponent,
+        StocksChartComponent
     ],
     imports: [
         CommonModule,
