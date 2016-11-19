@@ -19,8 +19,7 @@ export const routerConfig = [
         CommonModule,
         RouterModule.forChild(routerConfig)
     ],
-    providers: [StocksService],
-    exports: [StocksComponent]
+    providers: [StocksService]
 })
 export default class StocksModule {
 }

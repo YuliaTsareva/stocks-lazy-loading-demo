@@ -4,7 +4,6 @@ import companies from '../../data/companies';
 import { StocksService } from './stocks.service';
 
 @Component({
-    selector: 'stocks',
     templateUrl: './stocks.component.html',
     styleUrls: ['./stocks.component.css']
 })

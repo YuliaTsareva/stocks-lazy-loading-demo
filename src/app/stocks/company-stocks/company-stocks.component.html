@@ -31,3 +31,10 @@
         <td>{{company.Volume | number}}</td>
     </tr>
 </table>
+
+<stocks-chart *ngIf="chartData"
+              [data]="chartData"></stocks-chart>
+
+<div>
+    <button (click)="onBack()">&lt; Back</button>
+</div>
