@@ -32,4 +32,9 @@
     </tr>
 </table>
 
-<stocks-chart></stocks-chart>
+<stocks-chart *ngIf="chartData"
+              [data]="chartData"></stocks-chart>
+
+<div>
+    <button (click)="onBack()">&lt; Back</button>
+</div>
