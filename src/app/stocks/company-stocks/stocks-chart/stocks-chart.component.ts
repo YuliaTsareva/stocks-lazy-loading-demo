@@ -3,8 +3,10 @@ import * as D3 from 'd3';
 
 const width = 400;
 const height = 200;
-const padding = 1;
+const barChartsPadding = 1;
 const topPadding = 20;
+const bottomPadding = 20;
+const leftPadding = 30;
 
 @Component({
     selector: 'stocks-chart',
@@ -20,7 +22,12 @@ export class StocksChartComponent implements OnInit {
     }
 
     ngOnInit() {
-        const dataset = this.data.Elements[0].DataSeries.close.values;
+        const dataset = this.data.Dates.map((date, index) => {
+            return {
+                date: new Date(date),
+                value: this.data.Elements[0].DataSeries.close.values[index]
+            };
+        });
 
         const svg = this.host.append('svg')
             .attr('width', width)
@@ -29,36 +36,55 @@ export class StocksChartComponent implements OnInit {
         this.buildLineChart(svg, dataset);
     }
 
-    private buildBarChart(svg: any, dataset: number[]) {
+    private buildBarChart(svg: any, dataset: {date: Date, value: number}[]) {
         svg.selectAll('rect')
             .data(dataset)
             .enter()
             .append('rect')
             .attr('x', (d, i) => i * width / dataset.length)
-            .attr('y', d => height - d)
-            .attr('width', width / dataset.length - padding)
-            .attr('height', d => d)
+            .attr('y', d => height - d.value)
+            .attr('width', width / dataset.length - barChartsPadding)
+            .attr('height', d => d.value)
             .attr('fill', '#039be5');
     }
 
-    private buildLineChart(svg: any, dataset: number[]) {
-        const xScale = D3.scaleLinear()
-            .domain([0, dataset.length - 1])
-            .range([0, width]);
+    private buildLineChart(svg: any, dataset: {date: Date, value: number}[]) {
+        const minDate = dataset[0].date;
+        const maxDate = dataset[dataset.length - 1].date;
+        const xScale = D3.scaleTime()
+            .domain([minDate, maxDate])
+            .range([leftPadding + 1, width]);
 
         const yScale = D3.scaleLinear()
-            .domain([0, D3.max(dataset)])
-            .range([height, topPadding]);
+            .domain([0, D3.max(dataset, d => d.value)])
+            .range([height - bottomPadding, topPadding]);
 
-        const lineFun = D3.line()
-            .x((d, i) => xScale(i))
-            .y((d: any) => yScale(d));
+        const xAxis = D3.axisBottom(xScale)
+            .tickFormat(D3.timeFormat('%b'));
+
+        const yAxis = D3.axisLeft(yScale)
+            .ticks(5);
+
+        const areaFun = D3.area()
+            .x((d: any) => xScale(d.date))
+            .y0(height - bottomPadding)
+            .y1((d: any) => yScale(d.value));
+
+        svg.append('g')
+            .call(xAxis)
+            .attr('class', 'axis')
+            .attr('transform', 'translate(0, ' + (height - bottomPadding) + ')');
+
+        svg.append('g')
+            .call(yAxis)
+            .attr('class', 'axis')
+            .attr('transform', 'translate(' + leftPadding + ', 0)');
 
         svg.append('path')
             .datum(dataset)
-            .attr('d', lineFun)
+            .attr('d', areaFun)
             .attr('stroke', '#039be5')
-            .attr('stroke-width', 2)
-            .attr('fill', 'none');
+            .attr('stroke-width', 1)
+            .attr('fill', '#039be5');
     }
 }

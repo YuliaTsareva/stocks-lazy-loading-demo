@@ -21,7 +21,7 @@ export class CompanyStocksComponent implements OnInit {
 
         const chartParams = {
             StartDate: '2016-01-01T00:00:00-00',
-            EndDate: '2016-11-02T00:00:00-00',
+            EndDate: '2016-12-31T00:00:00-00',
             DataPeriod: 'Day',
             Elements: [
                 {Symbol: this.company.Symbol, Type: 'price', Params: ['c']}
